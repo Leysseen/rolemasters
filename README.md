@@ -15,19 +15,19 @@ Un Mj peut réutiliser une aide de jeu pour un scénarion qu'il dépose, l'aide 
 
 Le site est consultable par tout le monde, mais les éléments téléchargeables ne le sont que pour les membres inscrits.
 
-##Les utilisateurs
+## Les utilisateurs
 C'est un CRUD
 On distingue trois catégories d'utilisateurs. 
   - Les invités, qui ne sont pas identifés et qui ne peuvent que consulter la scénariothèque
   - Les MJ, qui sont inscrits sur le site et peuvent consulter, déposer et télécharger sur la scénariothèque
   - Les Administrateurs, qui peuvent fate la même chose que les MJ mais peuvent en plus gérer les utilisateurs et modérer le site
 
-##Les scénarios
+## Les scénarios
 C'est un CRUD
 Ils ont un auteur qui est le MJ qui les a déposés. Ils ne peuvent être supprimés que par ce MJ ou un Administrateur.
 Ils ne peuvent être supprimés définitivement que par les Administrateurs. Avant d'être définitivement supprimé, un scénario est "mis à la corbeille".
 
-##Les aides de jeu
+## Les aides de jeu
 Elles sont de trois sortes :
   - Les personnages
   - Les lieux
