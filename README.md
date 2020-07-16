@@ -35,3 +35,6 @@ Elles sont de trois sortes :
 
 Chaque aide est d'abord rattaché à un "scénario d'origine". Elle peut être ensuite rattachée à d'autres scénarios.
 Chaque aide de jeu est téléchargeable aux formats pdf, jpg, png.
+
+## Les PDF
+Si possible établir des templates twig puis les transformer en pdf une fois les variables remplies.
