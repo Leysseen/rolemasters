@@ -38,3 +38,6 @@ Chaque aide de jeu est téléchargeable aux formats pdf, jpg, png.
 
 ## Les PDF
 Si possible établir des templates twig puis les transformer en pdf une fois les variables remplies.
+```PHP
+$content->rendeView('templatePDF.html.twig')...
+```
