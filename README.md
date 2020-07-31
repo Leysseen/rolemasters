@@ -24,20 +24,20 @@ On distingue trois catégories d'utilisateurs.
 
 ## Les scénarios
 C'est un CRUD
-Ils ont un auteur qui est le MJ qui les a déposés. Ils ne peuvent être supprimés que par ce MJ ou un Administrateur.
+Ils ont un auteur qui est le MJ qui les a déposés (OneToMany). Ils ne peuvent être supprimés que par ce MJ ou un Administrateur.
 Ils ne peuvent être supprimés définitivement que par les Administrateurs. Avant d'être définitivement supprimé, un scénario est "mis à la corbeille".
 
 ## Les aides de jeu
 Elles sont de trois sortes :
-  - Les personnages
-  - Les lieux
-  - Les cartes
+  - Les personnages (entité)
+  - Les lieux (entité)
+  - Les cartes (entité)
 
-Chaque aide est d'abord rattaché à un "scénario d'origine". Elle peut être ensuite rattachée à d'autres scénarios.
+Chaque aide est d'abord rattaché à un "scénario d'origine" (ManyToMany). Elle peut être ensuite rattachée à d'autres scénarios.
 Chaque aide de jeu est téléchargeable aux formats pdf, jpg, png.
 
 ## Les PDF
 Si possible établir des templates twig puis les transformer en pdf une fois les variables remplies.
 ```PHP
-$content->rendeView('templatePDF.html.twig')...
+$content->renderView('templatePDF.html.twig')...
 ```
