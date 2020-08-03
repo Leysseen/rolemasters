@@ -34,7 +34,7 @@ Elles sont de trois sortes :
   - Les cartes (entité)
 
 Chaque aide est d'abord rattaché à un "scénario d'origine" (ManyToMany). Elle peut être ensuite rattachée à d'autres scénarios.
-Chaque aide de jeu est téléchargeable aux formats pdf, jpg, png.
+Chaque aide de jeu est téléchargeable aux formats pdf, jpg, png. Par ailleurs la relation devrait être ManyToMany avec attribut car on peut imaginer qu'il pourrit y avoir plusieurs occurences du PNJ "Gardes ARES"... ou "Gobelins", en base nous n'avson qu'une seule entrée, mais en entité 3 occurences de l'objet.
 
 ## Les PDF
 Si possible établir des templates twig puis les transformer en pdf une fois les variables remplies.
