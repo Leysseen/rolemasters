@@ -41,3 +41,35 @@ Si possible établir des templates twig puis les transformer en pdf une fois les
 ```PHP
 $content->renderView('templatePDF.html.twig')...
 ```
+## Entités
+A première vue...
+  - User: firstname, lastname, email, creationDate, login, passwd
+  - Auth: level
+  - jdr: nom
+  - Scenario: titre, pitch, published, createdAt, modifiedAt
+  - Scene: titre, rang, contenu
+  - Personnage: nom, caracteristiques, competences, background
+  - lieux: nom, description, contexte
+  - Illustration: URL, alt, type(scenario, scene, personnage, lieux)
+  - Commentaire: commentaire, createdAt, published
+  - Complement: auteur, contenu, type(personnage, lieux)
+  - Document: titre, type(pdf,xlsx,docx,txt,rtf,odt,ods), URL
+Liaisons...
+  - scenario OneToOne user
+  - user OneToOne auth
+  - scenario ManyToOne jdr
+  - scene OneToOne scenario
+  - illustration ManyToOne scenario
+  - illustration ManyToOne scene
+  - personnage ManyToMany scenario
+  - personnage ManyToOne jdr
+  - personnage OneToOne user
+  - lieux OneToOne user
+  - lieux ManyToMany scenario
+  - lieux ManyToOne jdr
+  - illustration ManyToOne personnage
+  - illustration ManyToOne lieux
+  - commentaire ManyToOne scenario
+  - complement ManyToOne personnage
+  - complement ManyToOne lieux
+  - documents ManyToOne scenario
