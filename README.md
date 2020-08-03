@@ -54,6 +54,7 @@ A première vue...
   - Commentaire: commentaire, createdAt, published
   - Complement: auteur, contenu, type(personnage, lieux)
   - Document: titre, type(pdf,xlsx,docx,txt,rtf,odt,ods), URL
+
 Liaisons...
   - scenario OneToOne user
   - user OneToOne auth
