@@ -32,6 +32,11 @@ class Lieux
      */
     private $contexte;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     */
+    private $auteur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Lieux
     public function setContexte(string $contexte): self
     {
         $this->contexte = $contexte;
+
+        return $this;
+    }
+
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(User $user): self
+    {
+        $this->auteur = $user;
 
         return $this;
     }

@@ -42,6 +42,11 @@ class Scenario
      */
     private $modifiedAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     */
+    private $auteur;
+
     public function __construct()
     {
         $this->published = true;
@@ -109,6 +114,18 @@ class Scenario
     public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(User $user): self
+    {
+        $this->auteur = $user;
 
         return $this;
     }

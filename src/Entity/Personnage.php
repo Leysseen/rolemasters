@@ -37,6 +37,11 @@ class Personnage
      */
     private $background;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     */
+    private $auteur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Personnage
     public function setBackground(?string $background): self
     {
         $this->background = $background;
+
+        return $this;
+    }
+
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(User $user): self
+    {
+        $this->auteur = $user;
 
         return $this;
     }
