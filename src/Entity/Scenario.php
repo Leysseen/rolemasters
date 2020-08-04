@@ -49,7 +49,7 @@ class Scenario
     private $auteur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Jdr")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Jdr", inversedBy="scenarios")
      * @ORM\JoinColumn(nullable=false)
      */
     private $jdr;
