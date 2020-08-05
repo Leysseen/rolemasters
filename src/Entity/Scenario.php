@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ScenarioRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,15 +50,34 @@ class Scenario
     private $auteur;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Scene", mappedBy="scenario")
+     */
+    private $scenes;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Jdr", inversedBy="scenarios")
      * @ORM\JoinColumn(nullable=false)
      */
     private $jdr;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Personnage", mappedBy="scenario")
+     */
+    private $personnages;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Lieux", mappedBy="scenario")
+     */
+    private $lieux;
+
     public function __construct()
     {
         $this->published = true;
         $this->createdAt = new Datetime('now');
+        $this->scenes = new ArrayCollection();
+        $this->personnages = new ArrayCollection();
+        $this->lieux = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -145,6 +165,66 @@ class Scenario
     public function setJdr(Jdr $jdr): self
     {
         $this->jdr = $jdr;
+
+        return $this;
+    }
+
+    public function getScenes()
+    {
+        return $this->scenes;
+    }
+
+    public function setScene(Scene $scene): self
+    {
+        $this->scenes[] = $scene;
+        $scene->setScenario($this);
+
+        return $this;
+    }
+
+    public function removeScene(Scene $scene): self
+    {
+        $this->scenes->removeElement($scene);
+
+        return $this;
+    }
+
+    public function getPersonnages()
+    {
+        return $this->personnages;
+    }
+
+    public function setPersonnages(Personnage $personnage): self
+    {
+        $this->personnages[] = $personnage;
+        $personnage->setScenario($this);
+
+        return $this;
+    }
+
+    public function removePersonnage(Personnage $personnage): self
+    {
+        $this->personnages->removeElement($personnage);
+
+        return $this;
+    }
+
+    public function getLieux()
+    {
+        return $this->lieux;
+    }
+
+    public function setLieux(Lieux $lieux): self
+    {
+        $this->lieux[] = $lieux;
+        $lieux->setScenario($this);
+
+        return $this;
+    }
+
+    public function removeLieux(Lieux $lieux): self
+    {
+        $this->lieux->removeElement($lieux);
 
         return $this;
     }

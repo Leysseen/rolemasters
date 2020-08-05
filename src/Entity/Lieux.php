@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LieuxRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +34,24 @@ class Lieux
     private $contexte;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lieux")
      */
     private $auteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Jdr", inversedBy="lieux")
+     */
+    private $jdr;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Scenario", inversedBy="lieux")
+     */
+    private $scenarios;
+
+    public function __construct()
+    {
+        $this->scenarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +102,32 @@ class Lieux
     public function setAuteur(User $user): self
     {
         $this->auteur = $user;
+
+        return $this;
+    }
+
+    public function getJdr()
+    {
+        return $this->jdr;
+    }
+
+    public function setJdr(Jdr $jdr): self
+    {
+        $this->jdr = $jdr;
+        $jdr->addLieux($this);
+
+        return $this;
+    }
+
+    public function getScenarios()
+    {
+        return $this->scenarios;
+    }
+
+    public function setScenario(Scenario $scenario)
+    {
+        $this->scenarios[] = $scenario;
+        $scenario->setLieux($this);
 
         return $this;
     }

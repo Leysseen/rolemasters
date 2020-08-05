@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PersonnageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,9 +39,24 @@ class Personnage
     private $background;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="personnages")
      */
     private $auteur;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Scenario", inversedBy="personnages")
+     */
+    private $scenarios;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Jdr", inversedBy="personnages")
+     */
+    private $jdr;
+
+    public function __construct()
+    {
+        $this->scenarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +119,32 @@ class Personnage
     public function setAuteur(User $user): self
     {
         $this->auteur = $user;
+
+        return $this;
+    }
+
+    public function getScenarios()
+    {
+        return $this->scenarios;
+    }
+
+    public function setScenario(Scenario $scenario)
+    {
+        $this->scenarios[] = $scenario;
+        $scenario->setPersonnages($this);
+
+        return $this;
+    }
+
+    public function getJdr()
+    {
+        return $this->jdr;
+    }
+
+    public function setJdr(Jdr $jdr)
+    {
+        $this->jdr = $jdr;
+        $jdr->addPersonnage($this);
 
         return $this;
     }
