@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\ManagerConfigurator;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Persistence\ObjectManager;
@@ -54,6 +55,11 @@ class User
      * @ORM\JoinColumn(nullable=false)
      */
     private $auth;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Scenario", mappedBy="auteur")
+     */
+    private $scenarios;
 
     public function __construct(ObjectManager $manager)
     {

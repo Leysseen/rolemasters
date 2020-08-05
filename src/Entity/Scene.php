@@ -32,6 +32,11 @@ class Scene
      */
     private $rang;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Scenario", cascade={"persist"})
+     */
+    private $scenario;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Scene
     public function setRang(int $rang): self
     {
         $this->rang = $rang;
+
+        return $this;
+    }
+
+    public function getScenario()
+    {
+        return $this->scenario;
+    }
+
+    public function setScenario(Scenario $scenario): self
+    {
+        $this->scenario = $scenario;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ScenarioRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +42,17 @@ class Scenario
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modifiedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="scenarios")
+     */
+    private $auteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Jdr", inversedBy="scenarios")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $jdr;
 
     public function __construct()
     {
@@ -109,6 +121,30 @@ class Scenario
     public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(User $user): self
+    {
+        $this->auteur = $user;
+
+        return $this;
+    }
+
+    public function getJdr()
+    {
+        return $this->jdr;
+    }
+
+    public function setJdr(Jdr $jdr): self
+    {
+        $this->jdr = $jdr;
 
         return $this;
     }
