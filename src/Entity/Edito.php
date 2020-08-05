@@ -37,6 +37,11 @@ class Edito
      */
     private $published;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User")
+     */
+    private $auteur;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
@@ -92,6 +97,18 @@ class Edito
     public function setPublished(bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(User $user): self
+    {
+        $this->auteur = $user;
 
         return $this;
     }

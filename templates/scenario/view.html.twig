@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ scenario.titre }}{% endblock %}
+
+{% block edito_body %}
+    <div class="example-wrapper">
+        <h2>{{ scenario.titre }} ✅</h2>
+        <div class="well">
+            {{ scenario.pitch|raw }}
+            <p class="text-right"><dfn>{{ scenario.auteur.firstname }} publié le {{ scenario.createdAt|date('d/m/Y') }}</dfn></p>
+        </div>
+    </div>
+{% endblock %}
+

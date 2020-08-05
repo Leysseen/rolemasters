@@ -1,4 +1,4 @@
-{% extends 'edito/layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Edito{% endblock %}
 
@@ -6,6 +6,9 @@
 
 <div class="example-wrapper">
     <h2>{{ edito.titre}} ✅</h2>
-    <div class="well">{{ edito.contenu|raw }}</div>
+    <div class="well">
+        {{ edito.contenu|raw }}
+        <p class="text-right"><dfn>{{ edito.auteur.firstname }} {{ edito.auteur.lastname }}</dfn></p>
+    </div>
 </div>
 {% endblock %}

@@ -56,6 +56,11 @@ class User
      */
     private $auth;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Scenario", mappedBy="auteur")
+     */
+    private $scenarios;
+
     public function __construct(ObjectManager $manager)
     {
         $this->createdAt = new Datetime('now');

@@ -44,7 +44,7 @@ class Scenario
     private $modifiedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="scenarios")
      */
     private $auteur;
 
