@@ -28,9 +28,21 @@ class Jdr
      */
     private $scenarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Personnage", mappedBy="jdr")
+     */
+    private $personnages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Lieux", mappedBy="jdr")
+     */
+    private $lieux;
+
     public function __construct()
     {
         $this->scenarios = new ArrayCollection();
+        $this->personnages = new ArrayCollection();
+        $this->lieux = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,5 +79,42 @@ class Jdr
     public function removeScenario(Scenario $scenario)
     {
         $this->scenarios->removeElement($scenario);
+    }
+
+    public function getPersonnages()
+    {
+        return $this->personnages;
+    }
+
+    public function addPersonnage(Personnage $personnage)
+    {
+        $this->personnages[] = $personnage;
+        // on affecte à l'inverse
+        $personnage->setJdr($this);
+
+        return $this;
+    }
+
+    public function removePersonnage(Personnage $personnage)
+    {
+        $this->personnages->removeElement($personnage);
+    }
+
+    public function getLieux()
+    {
+        return $this->lieux;
+    }
+
+    public function addLieux(Lieux $lieux)
+    {
+        $this->lieux[] = $lieux;
+        $lieux->setJdr($this);
+
+        return $this;
+    }
+
+    public function removeLieux(Lieux $lieux)
+    {
+        $this->lieux->removeElement($lieux);
     }
 }

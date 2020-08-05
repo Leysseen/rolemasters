@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\ManagerConfigurator;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Persistence\ObjectManager;
 
@@ -51,7 +52,7 @@ class User
     private $passwd;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Auth")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Auth")
      * @ORM\JoinColumn(nullable=false)
      */
     private $auth;
@@ -61,6 +62,16 @@ class User
      */
     private $scenarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Personnage", mappedBy="auteur")
+     */
+    private $personnages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Lieux", mappedBy="auteur")
+     */
+    private $lieux;
+
     public function __construct(ObjectManager $manager)
     {
         $this->createdAt = new Datetime('now');
@@ -68,6 +79,9 @@ class User
             ->findOneBy(array('level' => 'Inscrit'));
 
         $this->auth = $auth;
+        $this->scenarios = new ArrayCollection();
+        $this->personnages = new ArrayCollection();
+        $this->lieux = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -155,6 +169,66 @@ class User
     public function setAuth(Auth $auth): self
     {
         $this->auth = $auth;
+
+        return $this;
+    }
+
+    public function getScenarios()
+    {
+        return $this->scenarios;
+    }
+
+    public function setScenario(Scenario $scenario): self
+    {
+        $this->scenarios[] = $scenario;
+        $scenario->setAuteur($this);
+
+        return $this;
+    }
+
+    public function removeScenario(Scenario $scenario): self
+    {
+        $this->scenarios->removeElement($scenario);
+
+        return $this;
+    }
+
+    public function getPersonnages()
+    {
+        return $this->personnages;
+    }
+
+    public function setPersonnages(Personnage $personnage): self
+    {
+        $this->personnages[] = $personnage;
+        $personnage->setAuteur($this);
+
+        return $this;
+    }
+
+    public function removePersonnage(Personnage $personnage): self
+    {
+        $this->personnages->removeElement($personnage);
+
+        return $this;
+    }
+
+    public function getLieux()
+    {
+        return $this->lieux;
+    }
+
+    public function setLieux(Lieux $lieux): self
+    {
+        $this->lieux[] = $lieux;
+        $lieux->setAuteur($this);
+
+        return $this;
+    }
+
+    public function removeLieux(Lieux $lieux): self
+    {
+        $this->lieux->removeElement($lieux);
 
         return $this;
     }

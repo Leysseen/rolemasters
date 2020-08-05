@@ -33,7 +33,7 @@ class Scene
     private $rang;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Scenario", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Scenario", inversedBy="scene")
      */
     private $scenario;
 

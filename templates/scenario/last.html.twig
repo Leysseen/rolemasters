@@ -2,7 +2,11 @@
 {% if scenarii is not null %}
     <ul class="nav nav-pills nav-stacked">
         {% for scenario in scenarii %}
-            <li><a href="{{ path('scenario', {'id': scenario.id }) }}">{{ scenario.titre }}</a></li>
+            <li>
+                <i class="glyphicon glyphicon-tags">
+                <a href="{{ path('scenario', {'id': scenario.id }) }}">{{ scenario.titre }}</a>
+                </i>
+            </li>
         {% endfor %}
     </ul>
 {% endif %}
