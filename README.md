@@ -56,18 +56,18 @@ A première vue...
   - Document: titre, type(pdf,xlsx,docx,txt,rtf,odt,ods), URL
 
 Liaisons...
-  - scenario ManyToOne user             v
-  - user ManyToOne auth                 v
-  - scenario ManyToOne jdr              v
-  - scene ManyToOne scenario            v
+  - v scenario ManyToOne user
+  - v user ManyToOne auth 
+  - v scenario ManyToOne jdr
+  - v scene ManyToOne scenario 
   - illustration ManyToOne scenario
   - illustration ManyToOne scene
-  - personnage ManyToMany scenario      v
-  - personnage ManyToOne jdr            v
-  - personnage ManyToOne user           v
-  - lieux ManyToOne user                v
-  - lieux ManyToMany scenario           v
-  - lieux ManyToOne jdr                 v
+  - v personnage ManyToMany scenario 
+  - v personnage ManyToOne jdr 
+  - v personnage ManyToOne user
+  - v lieux ManyToOne user
+  - v lieux ManyToMany scenario
+  - v lieux ManyToOne jdr
   - illustration ManyToOne personnage
   - illustration ManyToOne lieux
   - commentaire ManyToOne scenario
