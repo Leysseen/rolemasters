@@ -61,12 +61,12 @@ class Scenario
     private $jdr;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Personnage", mappedBy="scenario")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Personnage", mappedBy="scenarios")
      */
     private $personnages;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Lieux", mappedBy="scenario")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Lieux", mappedBy="scenarios")
      */
     private $lieux;
 
@@ -174,7 +174,7 @@ class Scenario
         return $this->scenes;
     }
 
-    public function setScene(Scene $scene): self
+    public function addScene(Scene $scene): self
     {
         $this->scenes[] = $scene;
         $scene->setScenario($this);
