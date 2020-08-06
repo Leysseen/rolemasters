@@ -33,7 +33,7 @@ class Scene
     private $rang;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Scenario", inversedBy="scene")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Scenario", inversedBy="scenes")
      */
     private $scenario;
 
@@ -86,6 +86,7 @@ class Scene
     public function setScenario(Scenario $scenario): self
     {
         $this->scenario = $scenario;
+        $scenario->addScene($this);
 
         return $this;
     }

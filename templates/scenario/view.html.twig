@@ -7,7 +7,16 @@
         <h2>{{ scenario.titre }} ✅</h2>
         <div class="well">
             {{ scenario.pitch|raw }}
-            <p class="text-right"><dfn>{{ scenario.auteur.firstname }} publié le {{ scenario.createdAt|date('d/m/Y') }}</dfn></p>
+            {% if scenario.scenes is not null %}
+                <ul>
+                {% for scene in scenario.scenes %}
+                    <li>
+                        <a href="">{{ scene.titre }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <p class="text-right"><dfn>{{ scenario.auteur.login }} publié le {{ scenario.createdAt|date('d/m/Y') }}</dfn></p>
         </div>
     </div>
 {% endblock %}
